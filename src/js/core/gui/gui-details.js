@@ -566,6 +566,11 @@ class GUI_details_class {
 		for (var k in params_config.attributes) {
 			var item = params_config.attributes[k];
 
+			// Some controls affect future gestures, not the selected layer.
+			if (item && item.tool_only === true) {
+				continue;
+			}
+
 			//hide some fields, in future name should start with underscore
 			if(params_config.name == 'rectangle' && k == 'square'
 				|| params_config.name == 'ellipse' && k == 'circle'

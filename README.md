@@ -1,3 +1,43 @@
+# miniPaint Symmetry Brush
+
+CS361 Homework 5 Part 5: a symmetry brush added to [miniPaint](https://github.com/viliusle/miniPaint), an MIT-licensed browser image editor by Vilius L. and its contributors. This repository contains the modified application, regression tests, and sample artwork. Development and verification were assisted by OpenAI Codex.
+
+## Added feature
+
+Select **Brush**, then choose **Off**, **Vertical**, **Horizontal**, or **Both** from the Symmetry control. Reflections use the canvas center, each gesture is one undo/redo action, and dashed guides stay out of exported images. Projects retain ordinary brush data and remain compatible with the original application.
+
+![Symmetry brush in miniPaint](docs/symmetry-brush.png)
+
+## Run locally
+
+The verified environment used Node.js 22.12.0 and npm 10.9.0.
+
+```sh
+git clone https://github.com/pranay-dinesh/minipaint-symmetry-brush.git
+cd minipaint-symmetry-brush
+npm ci --engine-strict
+npm run build
+python3 -m http.server 4173 --bind 127.0.0.1
+```
+
+Open <http://127.0.0.1:4173>. The committed `dist/` build can also be served without rebuilding. To try the sample artwork, open [symmetry-project.json](examples/symmetry-project.json) from the application's File menu.
+
+## Verification
+
+```sh
+node tests/symmetry/node-regression.cjs
+```
+
+The automated suite contains 40 logic checks against the actual brush and history modules, with explicit browser/GUI doubles. It writes a local result file beside the test script. Additional implementation verification exercised 13 Chrome browser scenario groups, the production build, and PNG/project compatibility; those private session logs and homework reports are not part of this public source repository.
+
+Browser coverage was macOS Chrome. Physical stylus and native multitouch hardware remain unverified, and large-canvas stress and all filter/blend combinations were not exhaustively tested. A pre-existing export-dialog callback error can occur after closing the dialog; actual downloads succeeded during verification.
+
+## Attribution
+
+Based on upstream miniPaint commit [`c9192c15918eb61f7dd89e362cf8065a276b89e9`](https://github.com/viliusle/miniPaint/commit/c9192c15918eb61f7dd89e362cf8065a276b89e9). Original source history, package attribution, and [MIT-LICENSE.txt](MIT-LICENSE.txt) are retained. The original project README follows.
+
+---
+
 # miniPaint
 
 Online image editor lets you create and edit images using HTML5 technologies. No need to buy, download, install, or have outdated flash. No ads. Key features: layers, filters, open source Photoshop alternative.

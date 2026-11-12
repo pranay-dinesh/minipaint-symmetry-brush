@@ -94,9 +94,16 @@ config.TOOLS = [
 	},
 	{
 		name: 'brush',
+		on_update: 'on_params_update',
+		on_leave: 'on_leave',
 		attributes: {
 			size: 4,
 			pressure: false,
+			symmetry: {
+				value: 'Off',
+				values: ['Off', 'Vertical', 'Horizontal', 'Both'],
+				tool_only: true,
+			},
 		},
 	},
 	{

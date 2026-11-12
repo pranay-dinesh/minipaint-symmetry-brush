@@ -15,3 +15,9 @@ nbproject/
 /node_modules/
 *.js.ignore
 
+
+# Local development and verification files
+/.playwright-cli/
+/output/
+/homework-evidence/
+/tests/symmetry/logic-results.json
